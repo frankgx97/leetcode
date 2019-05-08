@@ -9,7 +9,6 @@ public:
         vector<int> empty_vector;
         dfs(0, empty_vector);
         return results;
-        
     }
     void dfs(int index, vector<int> path){
         if (path.size() > candidates.size()){

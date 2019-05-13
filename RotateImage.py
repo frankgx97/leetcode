@@ -5,7 +5,6 @@ class Solution:
         Do not return anything, modify matrix in-place instead.
         """
         backup = copy.deepcopy(matrix)
-        print (backup)
         n = len(matrix)
         for i in range(n):
             for j in range(n):

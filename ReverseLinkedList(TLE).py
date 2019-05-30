@@ -10,10 +10,6 @@ class Solution:
         tail = None
         current = head
         next = None
-        if current != None:
-            tail = copy.deepcopy(current)
-            tail.next = None
-            current = current.next
         while current != None:
             next = copy.deepcopy(current.next)
             current.next = tail

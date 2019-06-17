@@ -8,10 +8,9 @@ class Solution:
             return temp_result
 
         result = []
-        duplicate = []
         for i in range(len(nums)):
             for j in two_sum(-nums[i], i+1):
-                if sorted(j) not in duplicate:
+                j.sort()
+                if j not in result:
                     result.append(j)
-                    duplicate.append(sorted(j))
         return result

@@ -25,5 +25,4 @@ class Solution:
             else:
                 lst.append(i[0])
         vertical = binarySearch(lst, target)[0]
-        print(vertical)
         return binarySearch(matrix[vertical], target)[1]

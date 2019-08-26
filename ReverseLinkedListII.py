@@ -19,8 +19,6 @@ class Solution:
         prev = dummy
         
         while current:
-            #if i == 1:
-            #    prev = head
             if i == m:
                 start = current
                 left = prev

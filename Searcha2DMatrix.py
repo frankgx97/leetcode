@@ -1,5 +1,9 @@
 class Solution:
     def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
+        '''
+        two binary search - ac
+        use binary search two times, on col and row
+        '''
         if len(matrix) == 0 or len(matrix[0]) == 0:
             return False
         def bs(l,target):

@@ -3,6 +3,7 @@ class Solution:
     def topKFrequent(self, words: List[str], k: int) -> List[str]:
         '''
         heap - ac
+        sort the word list first to ensure words that are alphabetically smaller comes first
         use dict to count and use heap to sort
         almost same with "most common word"
         '''

@@ -1,5 +1,7 @@
-import copy
 class Solution:
+    '''
+    dfs - ac
+    '''
     def combinationSum2(self, candidates: List[int], target: int) -> List[List[int]]:
         def dfs(candidate,path,index,target,result):
             if sum(path) > target:
@@ -8,9 +10,7 @@ class Solution:
                 if path not in result:
                     result.append(path)
             for i in range(index, len(candidate)):
-                candidate_m = copy.copy(candidate)
-                p = candidate_m.pop(i)
-                dfs(candidate_m,path+[p],i, target, result)
+                dfs(candidate[:i]+candidate[i+1:],path+[candidate[i]],i, target, result)
         candidates.sort()
         result = []
         dfs(candidates, [], 0, target, result)

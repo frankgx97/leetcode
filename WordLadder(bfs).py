@@ -10,6 +10,8 @@ class Solution:
         3. end word not in the list "hit", "hig", ["hip"]
         4. end word not in the list "hit", "hap", ["hip"]
         5. "hot","dog",["hot","dog","dot"]
+        
+        another bfs approach: https://www.cnblogs.com/zuoyuan/p/3765858.html
         '''
         def diff(a,b):
             d = 0

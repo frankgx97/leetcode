@@ -2,6 +2,8 @@ class Solution:
     def numIslands(self, grid: List[List[str]]) -> int:
         '''
         dfs - flood fill
+        follow up 1: only count island that are at the center of the ocean(not at the edge of the map)
+        follow up 2: distinct islands(ref:https://leetcode.com/problems/number-of-distinct-islands/)
         '''
         def dfs(i,j):
             grid[i][j] = '0'

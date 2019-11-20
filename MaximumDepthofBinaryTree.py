@@ -6,19 +6,14 @@
 #         self.right = None
 
 class Solution:
-    maxm = 0
     def maxDepth(self, root: TreeNode) -> int:
-        self.maxm = 0
-        self.trav(root,1)
-        return self.maxm
-        
-    def trav(self, root,depth):
-        if not root:
-            return
-        if depth > self.maxm:
-            self.maxm = depth
-        self.trav(root.left, depth+1)
-        self.trav(root.right, depth+1)
-        return
-        
-        
+        '''
+        dfs - ac
+        '''
+        def trav(root,depth):
+            if not root:
+                return depth
+            l = trav(root.left, depth+1)
+            r = trav(root.right,depth+1)
+            return max(l,r)
+        return trav(root,0)

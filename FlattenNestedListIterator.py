@@ -51,10 +51,6 @@ class NestedIterator(object):
             curr = self.stack.pop(-1)
             if curr.isInteger():
                 return curr.getInteger()
-            #else:
-            #    glist = curr.getList()
-            #    for i in range(len(glist)-1,-1,-1):
-            #        self.stack.append(glist[i])
         return None
         
 

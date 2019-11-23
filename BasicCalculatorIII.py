@@ -3,6 +3,10 @@ class Solution:
         def to_postfix(s):
             '''
             infix to postfix
+            
+            ref: http://www.cse.psu.edu/~kxc104/ee324/02f/hw472/hw7.html
+            ref: https://leetcode.com/problems/basic-calculator-iii/discuss/414896/Infix-to-Postfix-a-general-approach-to-similar-questions
+            
             cases with negative:
             "-1+4*3/3/3"
             "1 - (-7)"
@@ -54,8 +58,10 @@ class Solution:
                         r.append(int(temp))
                         temp = ''
                     if (i == '-' or i == '+') and prev in ['', '(', '+', '-', '*', '/']:
-                        # is negative unary operator
-                        # handles -, ignore + as it does not change result
+                        # handle negative number
+                        # if a '-' appear after a operator, or at the head of the expression
+                        # it indicates a negative number
+                        # use ^ to present negative in postfix exp
                         if i == '-':
                             stack.append('^')
 
@@ -78,6 +84,7 @@ class Solution:
                 if type(i) == int:
                     stack.append(i)
                 else:
+                    #negative number
                     if i == '^':
                         stack.append(-int(stack.pop(-1)))
                         continue

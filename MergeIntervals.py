@@ -1,10 +1,17 @@
+import heapq
 class Solution:
     def merge(self, intervals: List[List[int]]) -> List[List[int]]:
-        intervals.sort(key=lambda x: x[0])
-        rst = []
+        '''
+        heap sort - ac
+        '''
+        heap = []
         for i in intervals:
-            if not rst or rst[-1][1] < i[0]:
-                rst.append(i)
-            else:
-                rst[-1][1] = max(i[1],rst[-1][1])
-        return rst
+            heapq.heappush(heap,(i[0],i))
+        r = []
+        while heap:
+            curr = heapq.heappop(heap)
+            if not r or curr[0] > r[-1][1]:
+                r.append(curr[1])
+            elif curr[1][1] > r[-1][1]:
+                r[-1] = [r[-1][0], curr[1][1]]
+        return r

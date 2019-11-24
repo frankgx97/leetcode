@@ -35,7 +35,7 @@ class Solution:
             
         '''
         at this point
-        current points to a unreversed node, prev points to a reversed
+        current points to a unreversed node, prev points to a reversed node
         ex.
         1 <- 2 <- 3 -> 4 -> 5
              ^    ^
@@ -46,7 +46,6 @@ class Solution:
            prev  curr
         
         '''
-        
         
         if length%2 == 1:
             current_left = prev
@@ -61,6 +60,3 @@ class Solution:
             current_left = current_left.next
             current_right = current_right.next
         return True
-            
-            
-            

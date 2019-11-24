@@ -10,28 +10,27 @@ class Solution:
         '''
         recursive - ac
         recursively check if all child nodes of every node is smaller/larger than it's value.
+        complexity O(n^2)
         '''
-        def is_larger_than_root(root,v):
+        def left_smaller_than_root(root, val):
             if not root:
-                return False
-            if root.val >= v:
                 return True
-            return is_larger_than_root(root.left,v) or is_larger_than_root(root.right,v)
+            if root.val >= val:
+                return False
+            return left_smaller_than_root(root.left, val) and left_smaller_than_root(root.right, val)
+            
+        def right_larger_than_root(root,val):
+            if not root:
+                return True
+            if root.val <= val:
+                return False
+            return right_larger_than_root(root.left, val) and right_larger_than_root(root.right, val)
+            
         
-        def is_smaller_than_root(root,v):
-            if not root:
-                return False
-            if root.val <= v:
-                return True
-            return is_smaller_than_root(root.left,v) or is_smaller_than_root(root.right,v)
-            
-            
-        def isbst(root):
+        def valid(root):
             if not root:
                 return True
-            if root.left and (root.left.val >= root.val or is_larger_than_root(root.left,root.val)):
+            if not (left_smaller_than_root(root.left, root.val) and right_larger_than_root(root.right,root.val)):
                 return False
-            if root.right and (root.right.val <= root.val or is_smaller_than_root(root.right,root.val)):
-                return False
-            return isbst(root.left) and isbst(root.right)
-        return isbst(root)
+            return valid(root.left) and valid(root.right)
+        return valid(root)

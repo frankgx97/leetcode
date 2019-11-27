@@ -28,15 +28,15 @@ class Solution:
             if word[depth] != board[x][y]:
                 return False
             
-            return dfs(x+1,y,path+[board[x][y]],visited+[(x,y)],depth+1) or \
-            dfs(x,y+1,path+[board[x][y]],visited+[(x,y)],depth+1) or \
-            dfs(x-1,y,path+[board[x][y]],visited+[(x,y)],depth+1) or \
-            dfs(x,y-1,path+[board[x][y]],visited+[(x,y)],depth+1)
+            return dfs(x+1,y,path+[board[x][y]],visited|set([(x,y)]),depth+1) or \
+            dfs(x,y+1,path+[board[x][y]],visited|set([(x,y)]),depth+1) or \
+            dfs(x-1,y,path+[board[x][y]],visited|set([(x,y)]),depth+1) or \
+            dfs(x,y-1,path+[board[x][y]],visited|set([(x,y)]),depth+1)
             
         for i in range(m):
             for j in range(n):
                 if(board[i][j] == word[0]):
-                    if dfs(i,j,[],[],0):
+                    if dfs(i,j,[],set(),0):
                         return True
                     else:
                         continue

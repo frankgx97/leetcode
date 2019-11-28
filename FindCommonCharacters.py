@@ -30,6 +30,7 @@ class Solution:
             rm = []
             for j in dic:
                 if j not in tempdic:
+                    # caution: removing keys during iteration is not allowed
                     rm.append(j)
                 else:
                     dic[j] = min(tempdic[j],dic[j])

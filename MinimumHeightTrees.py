@@ -4,6 +4,7 @@ class Solution:
         '''
         topological sort with bfs. - ac
         ref: course schedule, alien dictionary
+        ref: https://leetcode.com/problems/minimum-height-trees/discuss/413481/Python-topological-sorting
         '''
         if n == 1:
             return [0]

@@ -1,43 +1,32 @@
 class Solution:
     def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
         '''
-        topology sort - find cycle in graph
-        ref: https://www.youtube.com/watch?v=VvKwqfXri0I
-        
+        DAG bfs topology sort - ac
+        ref: alien dictionary
         '''
-        
-        def dfs(node):
-            # return true means there is a cycle
-            
-            # check if current node is in visiting, if yes, there is a cricle
-            if visiting[node]:
-                return True
-            
-            # if current node is visited, treat it as it does not have any outcome
-            if visited[node]:
-                return False
-            
-            
-            visiting[node] = 1
-            for i in dic[node]:
-                if dfs(i):
-                    return True
-            # once finding current node "safe", remove it from "visiting"
-            # and add it to "visited"
-            visiting[node] = 0
-            visited[node] = 1
-            return False
-        
-        
-        visiting = [0]*numCourses
-        visited = [0]*numCourses
-        
-        dic = []
+        graph = {}
+        ind = [0]*numCourses
         for i in range(numCourses):
-            dic.append([])
+            graph[i] = []
         for i in prerequisites:
-            dic[i[1]].append(i[0])
-        for i in range(numCourses):
-            if dfs(i):
-                return False
-        return True
+            graph[i[1]].append(i[0])
+            ind[i[0]] += 1
+        
+        # bfs
+        r = []
+        queue = []
+        for i in range(len(ind)):
+            if ind[i] == 0:
+                r.append(i)
+                queue.append(i)
+        while queue:
+            curr = queue.pop(0)
+            for i in graph[curr]:
+                ind[i] -= 1
+                if ind[i] == 0:
+                    queue.append(i)
+                    r.append(i)
+        if len(r) != numCourses:
+            return False
+        else:
+            return True

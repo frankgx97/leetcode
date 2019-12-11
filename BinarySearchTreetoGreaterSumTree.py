@@ -12,6 +12,7 @@ class Solution:
         first pass calc the sum of the bst
         second pass modify the current value to total sum - current sum
         in order traversal of bst is sorted
+        time: O(2n) = O(n)
         '''
         treesum = 0
         def getsum(root):

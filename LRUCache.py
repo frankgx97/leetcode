@@ -8,6 +8,14 @@ class Node:
 class LRUCache:
 
     def __init__(self, capacity: int):
+        '''
+        there are two structures
+        1. hashtable, key is the key, value is the reference of the node in the double linkedlist
+        2. double linked list, store the value
+        
+        maxcap is the max capacity of this cache
+        cap is the current capacity
+        '''
         self.h = {}
         self.cap = 0
         self.maxcap = capacity
@@ -17,6 +25,9 @@ class LRUCache:
         self.tail.prev = self.head
 
     def get(self, key: int) -> int:
+        '''
+        when getting a key, move it to the head of the list
+        '''
         if key not in self.h.keys() or self.h[key] == None:
             return -1
         else:
@@ -25,6 +36,11 @@ class LRUCache:
             return self.h[key].v
 
     def put(self, key: int, value: int) -> None:
+        '''
+        if key exists, update value and move this key to head
+        if reach max capacitance, remove tail of the list
+        insert new node to the head of the list
+        '''
         if key in self.h.keys() and self.h[key] != None:
             self.h[key].v = value
             self.mth(key)
@@ -75,6 +91,9 @@ class LRUCache:
         return
     
     def mth(self,k):
+        '''
+        move node to the head of list
+        '''
         this = self.h[k]
         pre = this.prev
         nex = this.next

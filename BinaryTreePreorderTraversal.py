@@ -13,7 +13,7 @@ class Solution:
         caution: right child goes first in iterative approach (stack is first in last out)
         '''
         r = []
-        #recursive
+        #recursive dfs
         def trav(root):
             if not root:
                 return
@@ -22,19 +22,19 @@ class Solution:
             trav(root.right)
             return
         
-        #iterative
+        #iterative dfs
         def trav_iter(root):
             if not root:
                 return []
             stack = [root]
+            r = []
             while stack:
                 curr = stack.pop(-1)
-                #right child goes first
+                # stack is first in last out, push right child into stack first
                 if curr.right:
                     stack.append(curr.right)
+                r.append(curr.val)
                 if curr.left:
                     stack.append(curr.left)
-                r.append(curr.val)
-        
-        trav_iter(root)
-        return r
+            return r
+        return trav_iter(root)

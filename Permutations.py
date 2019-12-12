@@ -3,6 +3,12 @@ class Solution:
         '''
         dfs - ac
         ref: https://www.youtube.com/watch?v=oCGMwvKUQ_I
+        time O(n!)
+        ex. [1,2,3]
+        at pos 0, have 3 choices
+        at pos 1, have 2 choices
+        at pos 0, have 1 choices
+        therefore, have n! permutations
         '''
         result = []
         def dfs(index, path):

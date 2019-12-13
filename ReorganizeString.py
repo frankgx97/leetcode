@@ -3,6 +3,7 @@ class Solution:
     '''
     heap
     time: O(nlogn)
+    space: O(n)
     '''
     def reorganizeString(self, S: str) -> str:
         #max heap

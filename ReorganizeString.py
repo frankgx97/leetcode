@@ -2,6 +2,7 @@ import heapq
 class Solution:
     '''
     heap
+    time: O(nlogn)
     '''
     def reorganizeString(self, S: str) -> str:
         #max heap

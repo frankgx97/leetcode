@@ -5,27 +5,29 @@ class Solution:
         follow up 1: only count island that are at the center of the ocean(not at the edge of the map)
         follow up 2: distinct islands(ref:https://leetcode.com/problems/number-of-distinct-islands/)
         '''
-        def dfs(i,j):
-            grid[i][j] = '0'
-            if i+1 < m and grid[i+1][j] == '1':
-                dfs(i+1,j)
-            if i-1 >= 0 and grid[i-1][j] == '1':
-                dfs(i-1,j)
-            if j+1 < n and grid[i][j+1] == '1':
-                dfs(i,j+1)
-            if j-1 >= 0 and grid[i][j-1] == '1':
-                dfs(i,j-1)
-            return
-        
-        if len(grid) == 0 or len(grid[0]) == 0:
+        if len(grid) == 0:
+            return 0
+        if len(grid[0]) == 0:
             return 0
         m = len(grid)
         n = len(grid[0])
-        c = 0
+       
+        def dfs(x,y):
+            if x < 0 or x >= m or y < 0 or y >= n:
+                return
+            if grid[x][y] == '0':
+                return
+            grid[x][y] = '0'
+            dfs(x+1,y)
+            dfs(x-1,y)
+            dfs(x,y+1)
+            dfs(x,y-1)
+            return
         
+        count = 0
         for i in range(m):
             for j in range(n):
                 if grid[i][j] == '1':
                     dfs(i,j)
-                    c += 1
-        return c
+                    count += 1
+        return count

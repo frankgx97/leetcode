@@ -16,49 +16,33 @@ class Solution:
         conquer:
         - ref: https://leetcode.com/problems/merge-two-sorted-lists/
         '''
-        
-        def merge(p1,p2):
+        def merge(l1,l2):
             dummy = ListNode(-1)
-            curr = dummy
-            
-            while p1 or p2:
-                if not p1:
-                    curr.next = p2
-                    break
-                elif not p2:
-                    curr.next = p1
-                    break
-                    
-                if p1.val <= p2.val:
-                    curr.next = p1
-                    p1 = p1.next
+            current = dummy
+            while l1 and l2:
+                if l1.val <= l2.val:
+                    current.next = l1
+                    l1 = l1.next
                 else:
-                    curr.next = p2
-                    p2 = p2.next
-                curr = curr.next
+                    current.next = l2
+                    l2 = l2.next
+                current = current.next
+            if l1:
+                current.next = l1
+            else:
+                current.next = l2
             return dummy.next
-            
-            
+        
         def ms(start):
             if not start or not start.next:
                 return start
-            
-            p1,p2 = start,None
-            
-            slow, start, prev = start, start, None
-            
+            fast, slow, prev = start, start, None
             while fast and fast.next:
                 prev = slow
                 slow = slow.next
                 fast = fast.next.next
-                
             prev.next = None
-            
             l = ms(start)
             r = ms(slow)
-            
             return merge(l,r)
-        
         return ms(head)
-                
-            

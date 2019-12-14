@@ -10,14 +10,14 @@ class Solution:
             if w == '':
                 r = True
                 return
-            if w in invalid:
+            if w in memo:
                 return
             for i in wordDict:
                 if w.startswith(i):
                     dfs(w[len(i):])
-            invalid.add(w)
+            memo.add(w)
             return
         
-        invalid = set()
+        memo = set()
         dfs(s)
         return r

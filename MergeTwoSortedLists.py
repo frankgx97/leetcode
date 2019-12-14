@@ -5,36 +5,22 @@
 #         self.next = None
 
 class Solution:
-    def assembleList(self,l):
-        former = None
-        first = None
-        for i in l:
-            current = ListNode(i)
-            if former == None:
-                former = current
-                first = current
-            else:
-                former.next = current
-                former = current
-        return first
-    
     def mergeTwoLists(self, l1: ListNode, l2: ListNode) -> ListNode:
-        result = []
-        
-        while l1 != None:
-            result.append(l1.val)
-            if l1.next != None:
+        '''
+        merge two lists O(n) - ac
+        '''
+        dummy = ListNode(-1)
+        current = dummy
+        while l1 and l2:
+            if l1.val <= l2.val:
+                current.next = l1
                 l1 = l1.next
             else:
-                break
-        
-        while l2 != None:
-            result.append(l2.val)
-            if l2.next != None:
+                current.next = l2
                 l2 = l2.next
-            else:
-                break
-        
-        result.sort()
-        return self.assembleList(result)
-        
+            current = current.next
+        if l1:
+            current.next = l1
+        else:
+            current.next = l2
+        return dummy.next

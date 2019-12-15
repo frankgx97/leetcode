@@ -1,14 +1,18 @@
 class Solution:
     def wordBreak(self, s: str, wordDict: List[str]) -> bool:
-        def d(s, word, index):
-            r = True
-            for i in range(1,len(word)+1):
-                r = (word[-i] == s[index-i]) and r
-            return r
-
-        dp = [False]*(len(s)+1)
-        dp[0] = True
-        for i in range(1,len(s)+1):
-            for word in wordDict:
-                dp[i] = dp[i] or (d(s, word, i) and dp[i-len(word)])
-        return dp[-1]
+        '''
+        dp - ac
+        '''
+        if s == '':
+            return False
+        dp = [0]*len(s)
+        for i in range(len(s)):
+            if s[:i+1] in wordDict:
+                dp[i] = 1
+            else:
+                for j in range(i+1):
+                    if dp[j-1] and s[j:i+1] in wordDict:
+                        dp[i] = 1
+        if dp[-1]:
+            return True
+        return False

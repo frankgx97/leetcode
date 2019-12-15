@@ -2,6 +2,8 @@ class Solution:
     def wordBreak(self, s: str, wordDict: List[str]) -> bool:
         '''
         dp - ac
+        time O(n^2)
+        space O(n)
         '''
         if s == '':
             return False

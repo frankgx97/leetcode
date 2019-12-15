@@ -1,31 +1,40 @@
 class Solution:
     def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
         '''
-        two binary search - ac
-        use binary search two times, on col and row
+        two binary searches - ac
+        first search on column, then search on column
+        time O(logn)
+        space constant
         '''
+        def bs(matrix,target):
+            left = 0
+            right = len(matrix)-1
+            while left <= right:
+                mid = left+(right-left)//2
+                if matrix[mid][0] == target:
+                    return mid, True
+                elif matrix[mid][0] < target:
+                    left = mid+1
+                else:
+                    right = mid-1
+            return right, False
+        
+        def bs2(arr,target):
+            left = 0
+            right = len(arr)-1
+            while left<=right:
+                mid = left+(right-left)//2
+                if arr[mid] == target:
+                    return True
+                elif arr[mid] < target:
+                    left = mid+1
+                else:
+                    right = mid-1
+            return False
+        
         if len(matrix) == 0 or len(matrix[0]) == 0:
             return False
-        def bs(l,target):
-            left = 0
-            right = len(l)-1
-            while left <= right:
-                mid = (left + right) //2
-                if l[mid] == target:
-                    return mid  
-                elif l[mid] > target:
-                    right = mid -1
-                else:
-                    left = mid + 1
-            return right
-        
-        first_col = []
-        for i in matrix:
-            first_col.append(i[0])
-        row_no = bs(first_col,target)
-        row = matrix[row_no]
-        index = bs(row,target)
-        if row[index] == target:
+        row, ret = bs(matrix,target)
+        if ret:
             return True
-        else:
-            return False
+        return bs2(matrix[row],target)

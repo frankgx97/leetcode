@@ -7,6 +7,12 @@
 
 class Solution:
     def isSubtree(self, s: TreeNode, t: TreeNode) -> bool:
+        '''
+        recursive - ac
+        time: O(mn)
+        space: O(height of tree)
+        ref: is same tree
+        '''
         def is_same(p,q):
             if not p and not q:
                 return True

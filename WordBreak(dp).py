@@ -15,6 +15,7 @@ class Solution:
                 for j in range(i+1):
                     if dp[j-1] and s[j:i+1] in wordDict:
                         dp[i] = 1
+                        break
         if dp[-1]:
             return True
         return False

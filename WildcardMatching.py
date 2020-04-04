@@ -19,10 +19,10 @@ class Solution:
                     return False
                 else:
                     memo[(t,p)] = match(t[1:],p[1:])
-                    return match(t[1:],p[1:])
+                    return memo[(t,p)]#match(t[1:],p[1:])
             elif p[0] == '?':
                 memo[(t,p)] = match(t[1:],p[1:])
-                return match(t[1:],p[1:])
+                return memo[(t,p)]#match(t[1:],p[1:])
             elif p[0] == '*':
                 r = False
                 for i in range(0,len(t)+1):

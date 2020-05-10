@@ -20,15 +20,16 @@ class Solution:
             return
         
         def bfs(x,y):
-            curr = 3
             queue = land
-            while True:
+            while queue:
                 inner = queue[:]
                 queue = []
+                visited = set()
                 for i in inner:
                     x,y,st = i
-                    if x >= m or x < 0 or y >= n or y < 0:
+                    if x >= m or x < 0 or y >= n or y < 0 or (x,y) in visited:
                         continue
+                    visited.add((x,y))
                     if A[x][y] == 1:
                         return st
                     if A[i[0]][i[1]] == 0:
@@ -37,11 +38,11 @@ class Solution:
                     queue.append((i[0]-1,i[1],st+1))
                     queue.append((i[0],i[1]+1,st+1))
                     queue.append((i[0],i[1]-1,st+1))
-                curr += 1
             
         m = len(A)
         n = len(A[0])
         x,y = find(1)
         land = []
         dfs(x,y)
-        return bfs(x,y) - 3
+        r = bfs(x,y) - 3
+        return r

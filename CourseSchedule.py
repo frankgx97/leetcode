@@ -5,6 +5,43 @@ class Solution:
         ref: alien dictionary
         '''
         graph = {}
+        indegree = [0]*numCourses
+        
+        for i in range(numCourses):
+            graph[i] = []
+        
+        for c in prerequisites:
+            j,i = tuple(c)
+            graph[i].append(j)
+            indegree[j] += 1
+        
+        q = []
+        
+        visited = set()
+        
+        count = numCourses
+        for i in range(len(indegree)):
+            if indegree[i] == 0:
+                q.append(i)
+                visited.add(i)
+                count -= 1
+        
+        while q:
+            subq = q[:]
+            q = []
+            for i in subq:
+                for j in graph[i]:
+                    if indegree[j] >= 1:
+                        indegree[j] -= 1
+                    if indegree[j] == 0 and j not in visited:
+                        q.append(j)
+                        visited.add(j)
+                        count -= 1
+        return count == 0
+            
+        
+        #==============================================
+        graph = {}
         ind = [0]*numCourses
         for i in range(numCourses):
             graph[i] = []
